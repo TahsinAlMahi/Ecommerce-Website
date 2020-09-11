@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="h-100">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <title>{{title}}</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+  {{>header}}
+
+  <main role="main" class="flex-shrink-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-3">
+          <h3>Categories</h3>
+          <ul class="list-group">
+            {{#each categories}}
+            <li class="list-group-item"><a href="/products/{{this.slug}}">{{this.title}}</a></li>
+            {{/each}}
+          </ul>
+        </div>
+        <div class="col-xs-12 col-md-8">
+          <h2>My Cart</h2>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col"></th>
+                <th scope="col">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each cart}}
+              <tr>
+                <td>{{this.title}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.qty}}</td>
+                <td>
+                  <a href="/cart/update/{{this.title}}?action=add">+</a>&nbsp;
+                  <a href="/cart/update/{{this.title}}?action=remove">-</a>&nbsp;
+                  <a href="/cart/update/{{this.title}}?action=clear">Clear</a>&nbsp;
+                </td>
+                <td>{{multiply this.qty this.price}}</td>
+              </tr>
+              <tr></tr>
+              </tr>
+              {{/each}}
+              <td colspan="5" align="right"><b>Total </b>{{total}}</td>
+              <tr>
+                <td colspan="5" align="right">
+                  <a class="clearcart btn btn-danger" href="/cart/clear">Clear cart</a>
+                  <a class="btn btn-primary buynow" href="#">Buy now</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {{>footer}}
+
+  {{>scripts}}
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html class="h-100">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <title>{{title}}</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+  {{>admin_header}}
+
+  <main role="main" class="flex-shrink-0">
+    <div class="container">
+      <h2 class="page-title">Products</h2>
+      <a href="/admin/products/add-product" class="btn btn-primary">Add Product</a>
+      <br><br>
+
+      <table class="table table-bordered table-responsive">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Product</th>
+            <th scope="col">Price</th>
+            <th scope="col">Category</th>
+						<th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each products}}
+					<tr>
+						<td>{{this.title}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.category}}</td>
+						<td><a href="/admin/products/edit-product/{{this.id}}" class="btn btn-primary">Edit</a></td>
+            <td><a href="/admin/products/delete-product/{{this.id}}" class="btn btn-primary">Delete</a></td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+    </div>
+  </main>
+  
+  {{>footer}}
+
+  {{>scripts}}
+</body>
+
+</html>

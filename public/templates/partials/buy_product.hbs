@@ -1,0 +1,12 @@
+<div class="card" style="width: 15rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{product.title}}</h5>
+        <p class="card-text">{{product.description}}</p>
+        <p class="card-text">{{product.price}}</p>
+        {{#if loggedIn}}
+        <a href="/cart/add/{{product.slug}}" class="btn btn-primary">Buy Now</a>
+        {{else}}
+        <p>You must be logged in to purchase.</p>
+        {{/if}}
+    </div>
+</div>
